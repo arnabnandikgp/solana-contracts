@@ -13,6 +13,8 @@ node_modules/
 **/*/rocksdb/
 **/*/accounts/
 **/*/snapshot/	
+*/*/test-ledger/
+**/*/test-ledger/	
 dist/
 build/
 *.js.map

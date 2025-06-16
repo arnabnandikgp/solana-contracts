@@ -8,34 +8,39 @@ use solana_program::{
     pubkey::Pubkey,
 };
 
-entrypoint!(process_instruction);
-
 #[derive(BorshSerialize, BorshDeserialize)]
 struct Counter {
     count: u32,
 }
 
 #[derive(BorshSerialize, BorshDeserialize)]
-enum CounterInstructions {
+enum CounterInstruction { // list of all the different instruction that you want to define on the contract(program)
     Increment(u32),
     Decrement(u32),
 }
 
+entrypoint!(process_instruction);
+
 pub fn process_instruction(
     _program_id: &Pubkey,
     accounts: &[AccountInfo],
-    instruction_data: &[u8],
-) -> ProgramResult {
-    let acc = next_account_info(&mut accounts.iter())?;
+    instruction_data: &[u8], // 0 , 0 0 0 1
+) -> ProgramResult { // Ok, Err(ProgramError)
+    let account = next_account_info(&mut accounts.iter())?;
+    let mut counter = Counter::try_from_slice(&account.data.borrow())?; // 10
 
-    let mut counter = Counter::try_from_slice(&acc.data.borrow())?;
-
-    match CounterInstructions::try_from_slice(instruction_data)? {
-        CounterInstructions::Increment(amount) => counter.count += amount,
-        CounterInstructions::Decrement(amount) => counter.count -= amount,
+    match CounterInstruction::try_from_slice(instruction_data)? {
+        CounterInstruction::Increment(amount) => {
+            counter.count += amount; // 11
+        }
+        CounterInstruction::Decrement(amount) => {
+            counter.count -= amount;
+        }
     }
 
-    counter.serialize(&mut *acc.data.borrow_mut())?;
+    counter.serialize(&mut *account.data.borrow_mut())?;
+
+    msg!("Counter updated to {}", counter.count);
 
     Ok(())
 }

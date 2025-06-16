@@ -1,0 +1,16 @@
+{
+  "name": "test_client",
+  "module": "index.ts",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@solana/web3.js": "^1.98.2",
+    "borsh": "^2.0.0"
+  }
+}
