@@ -22,6 +22,7 @@ build/
 .env
 .env.*.local
 .tsbuildinfo
+.cursor/
 
 # General IDE and OS exclusions
 .DS_Store
