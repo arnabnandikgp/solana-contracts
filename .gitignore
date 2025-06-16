@@ -1,0 +1,33 @@
+# Rust and Solana-specific exclusions
+target/
+**/*/target/
+**/*/target/debug/
+**/*/target/release/
+Cargo.lock
+Cargo.toml.orig
+.cargo/
+
+# Node.js and TypeScript specific exclusions (for tests, etc.)
+node_modules/
+**/*/node_modules/
+**/*/rocksdb/
+**/*/accounts/
+**/*/snapshot/	
+dist/
+build/
+*.js.map
+*.d.ts
+.env
+.env.*.local
+.tsbuildinfo
+
+# General IDE and OS exclusions
+.DS_Store
+.vscode/
+.idea/
+.env
+
+# Solana specific build artifacts
+.anchor/
+keys/
+ledger/
