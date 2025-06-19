@@ -14,7 +14,8 @@ node_modules/
 **/*/accounts/
 **/*/snapshot/	
 */*/test-ledger/
-**/*/test-ledger/	
+**/*/test-ledger/
+/test-ledger	
 dist/
 build/
 *.js.map
